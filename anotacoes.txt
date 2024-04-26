@@ -20,6 +20,12 @@ Compostos:
 
     Array: tem tamanho fixo, é imutável e todos os itens devem ser do mesmo tipo.
 
+    String e &str: &str é uma referência imutável a uma sequência de caracteres/pedaço de uma String,
+    pode ser declarada como: let s = "hello"; ele está "escrita" diretamente no código do programa
+    que será carregado na memória por isso é imutável, servindo somente como uma referência. Já uma
+    String é um tipo de dado armazenado na heap que possuí sua própria referência, sendo mutável (caso
+    declarada como 'mut').
+
 Sistema de Módulos
 
 Um módulo pode ser declarado usando 'mod' ou 'pub mod';
