@@ -1,0 +1,67 @@
+1 - Tipos de dados:
+
+Escalares:
+
+    Inteiros: Sinalizados => i8, i16, i32...; Não sinalizados => u8, u16, u32...;
+        Há também isize e usize
+
+    Ponto flutuantes: 
+        f32 => pecisão simples
+        f64 => precisão dupla
+    
+    Booleanos: true e false
+
+    Caracteres: char
+
+Compostos:
+
+    Tupla: definida por parênteses, pode combinar mais de um tipo primitivo, membros acessados
+    por ponto e o número de seu indice. let tupla: (i8, char) = (5, 'v'); pode ser desestruturada
+
+    Array: tem tamanho fixo, é imutável e todos os itens devem ser do mesmo tipo.
+
+Sistema de Módulos
+
+Um módulo pode ser declarado usando 'mod' ou 'pub mod';
+Ele pode ser declarado dentro do mesmo arquivo em que é chamado:
+Ex: src/main.rs
+
+    mod teste{
+        //stuff
+    }
+
+Pode ser dclarado em outro arquivo:
+Ex: src/main.rs
+
+    mod teste; // ele irá procurar por 'src/teste.rs' ou por 'src/teste/mod.rs'
+
+As funções ou tipos dentro de um módulo podem ser feitas públicas através de 'pub';
+Ex: src/teste.rs
+
+    fn funcao1(){
+        // Função privada, inacessível de fora do módulo
+    }
+
+    pub fn funcao2(){
+        // Função acessível de fora do módulo
+    }
+
+É possível declarar submódulos usando as mesmas regras acima, porém o compilador irá procurar
+pelos submódulos em um diretório com o nome do módulo pai ao invés do módulo filho.
+Ex: src/teste.rs -> que é um módulo
+
+    mod logs; // Irá procurar por 'src/testes/logs.rs' ou por 'src/testes/logs/mod.rs'
+
+Crate:
+
+Um crate é um pedaço de código que pode ser compilado, ele pode ser composto de vários módulos,
+crates pode ter dois tipos:
+
+    Library crate: não são compilados e não possuem a função main(), precisam ser chamados por
+    outro crate para serem executados. As funções e tipos declarados em sua raiz, 'src/lib.rs',
+    precisam ser públicos, marcar com 'pub'. Criados com cargo new <nome> --lib.
+
+    Binary crate: são compilados em executáveis, uma função main() em src/main.rs. Pelo que
+    entendi, um projeto tem um crate binário e pode ter vários library crates. O conjunto deles
+    é o que se chama de package, onde o arquivo Cargo.toml lista as dependências que o cargo
+    gerencia.
